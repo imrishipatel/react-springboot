@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.rishi.springboot.repository.EMployeeRepository&apos; to &apos;EmployeeRepository&apos;&#x0A;- Original project: &apos;springboot-backend&apos;&#x0A;- Original element: &apos;com.rishi.springboot.repository.EMployeeRepository&apos;&#x0A;- Renamed element: &apos;com.rishi.springboot.repository.EmployeeRepository&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;EMployeeRepository&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.rishi.springboot.repository{EMployeeRepository.java[EMployeeRepository" matchStrategy="1" name="EmployeeRepository" qualified="false" references="true" similarDeclarations="false" stamp="1640992400880" textual="false" version="1.0"/>
+</session>

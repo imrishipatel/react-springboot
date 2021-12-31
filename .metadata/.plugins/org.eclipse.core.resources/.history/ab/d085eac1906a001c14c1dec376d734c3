@@ -1,0 +1,16 @@
+package com.rishi.springboot.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rishi.springboot.repository.EmployeeRepository;
+
+@RestController
+@RequestMapping("/api/v1/")
+public class EmployeeController {
+	
+	private EmployeeRepository employeeRespository; 
+	
+	//get all employees 
+	
+}

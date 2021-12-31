@@ -1,0 +1,5 @@
+package com.rishi.springboot.model;
+
+public class Employee {
+
+}

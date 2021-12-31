@@ -1,0 +1,5 @@
+package com.rishi.springboot.exception;
+
+public class ResourceNotFoundException {
+
+}
