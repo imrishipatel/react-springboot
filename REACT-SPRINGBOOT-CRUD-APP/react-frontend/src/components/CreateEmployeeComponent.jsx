@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import EmployeeService from "../services/EmployeeService";
 
 class CreateEmployeeComponent extends PureComponent {
   constructor(props) {
@@ -38,6 +39,9 @@ class CreateEmployeeComponent extends PureComponent {
       emailId: this.state.emailId,
     };
     console.log("employee => " + JSON.stringify(employee));
+    EmployeeService.createEmployee(employee).then((res) => {
+      this.props.history.push("/employees");
+    });
   };
 
   render() {
