@@ -12,7 +12,10 @@ class FooterComponent extends Component {
       <div>
         <footer className="footer">
           <span className="text-muted">
-            All Rights Reserved 2021 © Rishi Patel
+            All Rights Reserved 2021 ©{" "}
+            <a href="https://patelrishi.com" target="_blank">
+              patelrishi.com
+            </a>
           </span>
         </footer>
       </div>
