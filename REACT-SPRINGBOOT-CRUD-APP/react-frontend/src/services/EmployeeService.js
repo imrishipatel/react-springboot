@@ -7,7 +7,7 @@ class EmployeeService {
   }
 
   createEmployee(employee) {
-    return axios.post(EMPLOYEE_API_BASE_URL, employee);
+    return axios.post(EMPLOYEE_API_BASE_URL + "/", employee);
   }
 
   getEmployeeById(employeeId) {
