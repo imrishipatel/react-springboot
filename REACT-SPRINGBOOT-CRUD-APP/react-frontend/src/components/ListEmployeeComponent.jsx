@@ -10,6 +10,12 @@ class ListEmployeeComponent extends Component {
     };
     this.addEmployee = this.addEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
+    this.viewEmployee = this.viewEmployee.bind(this);
+  }
+
+  viewEmployee(id) {
+    this.props.history.push;
+    this.props.history.push(`/view-employee/${id}`);
   }
 
   editEmployee(id) {
@@ -23,7 +29,7 @@ class ListEmployeeComponent extends Component {
   }
 
   addEmployee() {
-    this.props.history.push("/add-employee/-1");
+    this.props.history.push("/add-employee/_add");
   }
 
   render() {
@@ -59,6 +65,13 @@ class ListEmployeeComponent extends Component {
                       className="btn btn-info"
                     >
                       Update
+                    </button>
+                    <button
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => this.viewEmployee(employee.id)}
+                      className="btn btn-success"
+                    >
+                      View
                     </button>
                   </td>
                 </tr>

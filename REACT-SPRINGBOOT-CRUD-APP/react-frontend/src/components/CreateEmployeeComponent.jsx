@@ -13,11 +13,11 @@ class CreateEmployeeComponent extends PureComponent {
     };
     this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
     this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-    this.saveEmployee = this.saveEmployee.bind(this);
+    this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
   }
 
   componentDidMount() {
-    if (this.state.id === -1) {
+    if (this.state.id === "_add") {
       return;
     } else {
       EmployeeService.getEmployeeById(this.state.id).then((res) => {
@@ -47,15 +47,7 @@ class CreateEmployeeComponent extends PureComponent {
     this.props.history.push("/employees");
   }
 
-  getTitle() {
-    if (this.state.id == -1) {
-      return <h3 className="text-center">Add Employee</h3>;
-    } else {
-      return <h3 className="text-center">Update Employee</h3>;
-    }
-  }
-
-  saveEmployee = (event) => {
+  saveOrUpdateEmployee = (event) => {
     event.preventDefault();
     let employee = {
       firstName: this.state.firstName,
@@ -64,7 +56,7 @@ class CreateEmployeeComponent extends PureComponent {
     };
     console.log("employee => " + JSON.stringify(employee));
 
-    if (this.state.id === -1) {
+    if (this.state.id === "_add") {
       EmployeeService.createEmployee(employee).then((res) => {
         this.props.history.push("/employees");
       });
@@ -74,6 +66,14 @@ class CreateEmployeeComponent extends PureComponent {
       });
     }
   };
+
+  getTitle() {
+    if (this.state.id === "_add") {
+      return <h3 className="text-center">Add Employee</h3>;
+    } else {
+      return <h3 className="text-center">Update Employee</h3>;
+    }
+  }
 
   render() {
     return (
@@ -120,7 +120,7 @@ class CreateEmployeeComponent extends PureComponent {
 
                   <button
                     className="btn btn-success"
-                    onClick={this.saveEmployee}
+                    onClick={this.saveOrUpdateEmployee}
                   >
                     Save
                   </button>
