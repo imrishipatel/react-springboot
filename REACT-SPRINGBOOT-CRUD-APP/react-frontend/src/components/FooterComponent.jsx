@@ -10,14 +10,7 @@ class FooterComponent extends Component {
   render() {
     return (
       <div>
-        <footer className="footer">
-          <span className="text-muted">
-            All Rights Reserved 2021 ©{" "}
-            <a href="https://patelrishi.com" target="_blank">
-              patelrishi.com
-            </a>
-          </span>
-        </footer>
+        <footer className="footer"></footer>
       </div>
     );
   }
