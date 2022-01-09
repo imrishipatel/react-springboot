@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Counter.css";
 
-class Counter extends Component {
-  constructor() {
-    super();
+class CounterButton extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       counter: 0,
     };
@@ -13,15 +13,25 @@ class Counter extends Component {
   render() {
     return (
       <div className="counter">
-        <button onClick={this.increment}>+1</button>
-        <span className="count">{this.state.counter}</span>
+        <button onClick={this.increment}>{this.props.by}</button>
+        <span className="count" style={{ fontSize: "50px" }}>
+          {this.state.counter}
+        </span>
       </div>
     );
   }
 
   increment() {
-    this.setState({ counter: this.state.counter + 1 });
+    this.setState({ counter: this.state.counter + this.props.by });
   }
 }
 
-export default Counter;
+CounterButton.defaultProps = {
+  by: 1,
+};
+
+// Counter.propTypes = {
+//   by: propTypes.number,
+// };
+
+export default CounterButton;
