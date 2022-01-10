@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+/Users/rishipatel/Desktop/personal/dev-projects/react-springboot/.metadata/.plugins/org.eclipse.jdt.core
-1865797976.index
-1511608432.index
-1496595698.index

@@ -1,7 +1,0 @@
-package com.rishi.springboot.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface EMployeeRepository extends JpaRepository<Employee, Long>{
-
-}

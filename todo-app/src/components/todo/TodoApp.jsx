@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, withRouter } from "react-router-dom";
 
 class TodoApp extends PureComponent {
   constructor(props) {
@@ -72,9 +72,13 @@ class LoginComponent extends PureComponent {
       this.state.password === "admin"
     ) {
       console.log("Successful");
+
+      //   this.props.history.push("/welcome");
       this.setState({ showSuccessMessage: true });
+      this.setState({ hasLoginFailed: false });
     } else {
       console.log("Failed");
+      this.setState({ showSuccessMessage: false });
       this.setState({ hasLoginFailed: true });
     }
 
