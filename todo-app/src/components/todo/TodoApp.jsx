@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 class TodoApp extends PureComponent {
   constructor(props) {
@@ -10,9 +11,26 @@ class TodoApp extends PureComponent {
   render() {
     return (
       <div className="TodoAapp">
-        <LoginComponent />
+        <BrowserRouter>
+          <Routes>
+            <>
+              <Route path="/" exact element={<LoginComponent />}></Route>
+              <Route path="/login" element={<LoginComponent />}></Route>
+              <Route path="/welcome" element={<WelcomeComponent />}></Route>
+            </>
+          </Routes>
+        </BrowserRouter>
+
+        {/* <LoginComponent />
+        <WelcomeComponent /> */}
       </div>
     );
+  }
+}
+
+class WelcomeComponent extends PureComponent {
+  render() {
+    return <div>Welsome Rishi!!!</div>;
   }
 }
 
@@ -54,8 +72,10 @@ class LoginComponent extends PureComponent {
       this.state.password === "admin"
     ) {
       console.log("Successful");
+      this.setState({ showSuccessMessage: true });
     } else {
       console.log("Failed");
+      this.setState({ hasLoginFailed: true });
     }
 
     console.log(this.state);
@@ -64,8 +84,12 @@ class LoginComponent extends PureComponent {
   render() {
     return (
       <div>
-        <div>Invalid Credentials</div>
-        <div>Login Successful</div>
+        {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
+        {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
+        {this.state.showSuccessMessage && <div>Login Successful</div>}
+        {/* <ShowLoginSuccessMessage
+          showSuccessMessage={this.state.showSuccessMessage}
+        /> */}
         User Name:{" "}
         <input
           type="text"
@@ -85,5 +109,21 @@ class LoginComponent extends PureComponent {
     );
   }
 }
+
+// function ShowInvalidCredentials(props) {
+//   if (props.hasLoginFailed) {
+//     return <div>Invalid Credentials</div>;
+//   }
+
+//   return null;
+// }
+
+// function ShowLoginSuccessMessage(props) {
+//   if (props.showSuccessMessage) {
+//     return <div>Login Successful</div>;
+//   }
+
+//   return null;
+// }
 
 export default TodoApp;
