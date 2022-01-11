@@ -1,5 +1,19 @@
 import React, { PureComponent } from "react";
-import { BrowserRouter, Routes, Route, withRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+  Link,
+} from "react-router-dom";
+import { Component } from "react/cjs/react.production.min";
+import AuthenticationService from "./AuthenticationService.js";
+import ListTodosComponent from "./ListTodosComponent.jsx";
+import LoginComponent from "./LoginComponent.jsx";
+import HeaderComponent from "./HeaderComponent.jsx";
+import FooterComponent from "./FooterComponent.jsx";
+import ErrorComponent from "./ErrorComponent.jsx";
+// import "./../bootstrap.css";
 
 class TodoApp extends PureComponent {
   constructor(props) {
@@ -11,16 +25,21 @@ class TodoApp extends PureComponent {
   render() {
     return (
       <div className="TodoAapp">
-        <BrowserRouter>
-          <Routes>
-            <>
-              <Route path="/" exact element={<LoginComponent />}></Route>
-              <Route path="/login" element={<LoginComponent />}></Route>
-              <Route path="/welcome" element={<WelcomeComponent />}></Route>
-            </>
-          </Routes>
-        </BrowserRouter>
+        <HeaderComponent />
 
+        <hr />
+        <Router>
+          <Routes>
+            <Route path="/" element={<LoginComponent />}></Route>
+            <Route path="/login" element={<LoginComponent />}></Route>
+            <Route path="/welcome/:name" element={<WelcomeComponent />}></Route>
+            <Route path="/todos" element={<ListTodosComponent />}></Route>
+            <Route path="/logout" element={<LogoutComponent />}></Route>
+            <Route element={<ErrorComponent />}></Route>
+          </Routes>
+        </Router>
+        <hr />
+        <FooterComponent />
         {/* <LoginComponent />
         <WelcomeComponent /> */}
       </div>
@@ -28,91 +47,102 @@ class TodoApp extends PureComponent {
   }
 }
 
-class WelcomeComponent extends PureComponent {
-  render() {
-    return <div>Welsome Rishi!!!</div>;
-  }
-}
+// class HeaderComponent extends Component {
+//   render() {
+//     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+//     console.log(isUserLoggedIn);
 
-class LoginComponent extends PureComponent {
-  constructor(props) {
-    super(props);
+//     return (
+//       <header>
+//         <Router>
+//           <nav>
+//             <div className="navbar navbar-expand-md navbar-dark bg-dark ">
+//               <a href="https://patelrishi.com" className="navbar-brand">
+//                 Rishi Patel
+//               </a>
+//               <ul className="navbar-nav">
+//                 {isUserLoggedIn && (
+//                   <li>
+//                     <Link className="nav-link" to="/welcome/rishipatel">
+//                       Home
+//                     </Link>
+//                   </li>
+//                 )}
+//                 {isUserLoggedIn && (
+//                   <li>
+//                     <Link className="nav-link" to="/todos">
+//                       Todos
+//                     </Link>
+//                   </li>
+//                 )}
+//               </ul>
+//               <ul className="navbar-nav navbar-collapse justify-content-end">
+//                 <li>
+//                   {!isUserLoggedIn && (
+//                     <Link className="nav-link" to="/login">
+//                       Login
+//                     </Link>
+//                   )}
+//                 </li>
+//                 <li>
+//                   {isUserLoggedIn && (
+//                     <Link
+//                       className="nav-link"
+//                       to="/logout"
+//                       onClick={AuthenticationService.logout}
+//                     >
+//                       Logout
+//                     </Link>
+//                   )}
+//                 </li>
+//               </ul>
+//             </div>
+//           </nav>
+//         </Router>
+//       </header>
+//     );
+//   }
+// }
 
-    this.state = {
-      username: "rishipatel",
-      password: "",
-      hasLoginFailed: false,
-      showSuccessMessage: false,
-    };
+// class FooterComponent extends Component {
+//   render() {
+//     return (
+//       <footer className="footer">
+//         <span className="text-muted"> All Rights Reserved, patelrishi.com</span>
+//       </footer>
+//     );
+//   }
+// }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.loginClicked = this.loginClicked.bind(this);
-    // this.handleUserNameChange = this.handleUserNameChange.bind(this);
-    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
-  }
-
-  handleChange(event) {
-    console.log(event.target.value);
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  //   handleUserNameChange(event) {
-  //     console.log(event.target.value);
-  //     this.setState({ [event.target.name]: event.target.value });
-  //   }
-
-  //   handlePasswordChange(event) {
-  //     console.log(event.target.value);
-  //     this.setState({ password: event.target.value });
-  //   }
-
-  loginClicked() {
-    if (
-      this.state.username === "rishipatel" &&
-      this.state.password === "admin"
-    ) {
-      console.log("Successful");
-
-      //   this.props.history.push("/welcome");
-      this.setState({ showSuccessMessage: true });
-      this.setState({ hasLoginFailed: false });
-    } else {
-      console.log("Failed");
-      this.setState({ showSuccessMessage: false });
-      this.setState({ hasLoginFailed: true });
-    }
-
-    console.log(this.state);
-  }
-
+class LogoutComponent extends Component {
   render() {
     return (
       <div>
-        {/* <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} /> */}
-        {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
-        {this.state.showSuccessMessage && <div>Login Successful</div>}
-        {/* <ShowLoginSuccessMessage
-          showSuccessMessage={this.state.showSuccessMessage}
-        /> */}
-        User Name:{" "}
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        Password:{" "}
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.loginClicked}>Login</button>
+        <h1>You are logged out</h1>
+        <div className="container">Thank you for your Application. </div>
       </div>
     );
   }
 }
+
+function WelcomeComponent() {
+  let { name } = useParams();
+  return (
+    <>
+      <h1>Welcome!</h1>
+      <div className="container">
+        Hey {name}! You can manage your Todos <Link to="/todos">here.</Link>
+      </div>
+    </>
+    // <div>
+    //
+    // </div>
+  );
+}
+
+// function ErrorComponent() {
+//   return <div>An Error Occured!!! Please reload the application. </div>;
+// }
 
 // function ShowInvalidCredentials(props) {
 //   if (props.hasLoginFailed) {
