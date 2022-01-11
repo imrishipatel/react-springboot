@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
+import HelloWorldService from "../../api/todo/HelloWorldService";
 
 class WelcomeComponent extends PureComponent {
   constructor(props) {
@@ -32,7 +33,9 @@ class WelcomeComponent extends PureComponent {
   }
 
   retreiveWelcomeMessage() {
-    console.log("Welcome Message!");
+    HelloWorldService.executeHelloWorldService().then((res) =>
+      console.log(res)
+    );
   }
 }
 
