@@ -1,5 +1,0 @@
-package com.rishi.springboot.repository;
-
-public interface EMployeeRepository {
-
-}
