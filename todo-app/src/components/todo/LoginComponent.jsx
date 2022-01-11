@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "./AuthenticationService.js";
-// import "src/bootstrap.css";
+
 class LoginComponent extends Component {
   constructor(props) {
     super(props);

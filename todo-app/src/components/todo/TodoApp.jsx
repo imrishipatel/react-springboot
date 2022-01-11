@@ -1,18 +1,14 @@
 import React, { PureComponent } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-  Link,
-} from "react-router-dom";
-import { Component } from "react/cjs/react.production.min";
-import AuthenticationService from "./AuthenticationService.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { Component } from "react/cjs/react.production.min";
+// import AuthenticationService from "./AuthenticationService.js";
 import ListTodosComponent from "./ListTodosComponent.jsx";
 import LoginComponent from "./LoginComponent.jsx";
 import HeaderComponent from "./HeaderComponent.jsx";
 import FooterComponent from "./FooterComponent.jsx";
 import ErrorComponent from "./ErrorComponent.jsx";
+import LogoutComponent from "./LogoutComponent.jsx";
+import WelcomeComponent from "./WelcomeComponent.jsx";
 // import "./../bootstrap.css";
 
 class TodoApp extends PureComponent {
@@ -114,31 +110,28 @@ class TodoApp extends PureComponent {
 //   }
 // }
 
-class LogoutComponent extends Component {
-  render() {
-    return (
-      <div>
-        <h1>You are logged out</h1>
-        <div className="container">Thank you for your Application. </div>
-      </div>
-    );
-  }
-}
+// class LogoutComponent extends Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>You are logged out</h1>
+//         <div className="container">Thank you for your Application. </div>
+//       </div>
+//     );
+//   }
+// }
 
-function WelcomeComponent() {
-  let { name } = useParams();
-  return (
-    <>
-      <h1>Welcome!</h1>
-      <div className="container">
-        Hey {name}! You can manage your Todos <Link to="/todos">here.</Link>
-      </div>
-    </>
-    // <div>
-    //
-    // </div>
-  );
-}
+// function WelcomeComponent() {
+//   let { name } = useParams();
+//   return (
+//     <>
+//       <h1>Welcome!</h1>
+//       <div className="container">
+//         Hey {name}! You can manage your Todos <Link to="/todos">here.</Link>
+//       </div>
+//     </>
+//   );
+// }
 
 // function ErrorComponent() {
 //   return <div>An Error Occured!!! Please reload the application. </div>;
